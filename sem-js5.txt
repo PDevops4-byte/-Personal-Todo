@@ -1,0 +1,224 @@
+
+'use strict'
+
+let element = document.createElement("p");
+element.classList.add('text1', 'text2');//adding class, - now we can do anything with this class in css 
+element.classList.replace('text2', 'text3')//replacing class
+element.classList.remove('text3')//removing class
+element.textContent = 'hello world' //giving textcontent
+element.style.backgroundColor = 'yellow' //styles with js
+let element2 = document.createElement("h1");
+document.querySelector("#wrapper").appendChild(element);//putting element in other element with appendchild
+document.querySelector(".container").appendChild(element2);
+
+let testvar = document.querySelectorAll('.test');
+console.log(testvar)
+
+
+//creating a div and child
+let divel = document.createElement("div");
+divel.classList.add("box");
+
+let link = document.createElement("a");
+link.textContent = 'youtube'
+link.setAttribute('href', "https://www.youtube.com/?themeRefresh=1")
+link.setAttribute('target', "_blank")
+divel.appendChild(link)
+
+document.querySelector("#wrapper").appendChild(divel)
+
+
+//example #2
+let title = document.createElement('h2');
+title.textContent = "title"
+
+let divarray = document.querySelectorAll(".test-div");
+console.log(divarray)
+
+divarray[1].appendChild(title)//if we want to append value in some exact div and we hav few and same just do this. queryselectorall(cuz its array)
+divarray.forEach(function (item) { //if we want to append in all we need to use foreach or for loops
+    let title = document.createElement('h2');
+    title.textContent = "title"
+
+    item.appendChild(title) //and in function
+})
+
+
+//innerhtml and innertext
+document.querySelector('.div-element').innerHTML = '<p>hello world</p>' //with innerhtml it will understood that p is a tag and it will be a just normal tag
+//but with a innertext it will define as a normal text and output <p>hello world</p> and not hello world
+
+//events
+let btnel = document.querySelectorAll(".button-wrapper")
+
+btnel.forEach(element3 => {
+    element3.textContent = 'click me'
+    element3.addEventListener('click', function () {
+        document.body.classList.toggle('body-class')//instead of add use toggle, it will chek if body have class or not, if no it will give and when it have and cheks on click it have it will remove
+        element3.classList.toggle('btn-wrapper')
+    })
+
+})
+
+
+//doing addeventlisteners in function way
+
+let btn2 = document.querySelector(".btn-wrapper-2");
+btn2.textContent = 'click me'
+function eventfunc() {
+    document.body.classList.toggle("body-class2");
+}
+
+btn2.addEventListener("click", eventfunc);
+
+//focut on input with js
+
+let myinp = document.getElementById('inputfield');
+
+myinp.addEventListener('focus', () => {
+    myinp.style.outline = 'none'
+    myinp.style.transition = '0.3s'
+    myinp.style.boxShadow = '5px 5px 15px rgb(249, 27, 27)'//cool shit
+})
+
+myinp.addEventListener('keydown', (event) => {                                //event target
+    myinp.style.boxShadow = '5px 5px 15px rgb(27, 249, 27)'//cool shit   event.target.style.boxShadow = '5px 5px 15px rgb(27, 249, 27)' this will log keyboardevent and not info, we can see info by clicking on it 
+    console.log(event) //this is some useable haker shit
+})
+myinp.addEventListener('keyup', () => {
+    myinp.style.boxShadow = '5px 5px 15px  rgb(249, 27, 27)' //cool shit
+})
+
+
+//div box
+let divbox = document.querySelector('.box-div'); //getting box div with queryselector
+divbox.addEventListener('click', (event2) => { //by divbox click addeventlistener, and parameter in function
+    console.log(event2.target) //we will log this parameters target and it will log in console, what we click that is in box, we have h2 tag and click it will log h2 tag and value in it or more, by clicking on whole box, it will log whole box
+    event2.target.style.backgroundColor = 'yellow'
+})//taget is some cool shit
+
+//a tag 
+let newlink = document.getElementById('newlink');
+
+newlink.addEventListener('click', (element4) => {
+    element4.preventDefault() //by preventdefault it will stop its prevent function of the tag, when its clicked
+})
+
+//1:34:02/1:53:05
+
+
+
+
+
+
+
+
+
+
+
+
+
+.text1{
+    color: red;
+}
+.body-class{
+    background-color: rgb(0, 255, 76);
+}
+.body-class2{
+    background-color: rgb(151, 251, 181);
+}
+.button-wrapper{
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: beige;
+}
+.btn-wrapper{
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: beige;
+    scale: 1.1;
+}
+.inputfield{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 15px;
+    font-size: 20px;
+}
+/* div box style */
+.box-div{
+    width: 400px;
+    height: 400px;
+    border: 1px solid #000;
+}
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+    <section>
+        <div id="wrapper">
+        </div>
+
+        <div class="container">
+
+            <p class="test"></p>
+            <img class="test">
+        </div>
+        <div class="test-div">1</div>
+        <div class="test-div">2</div>
+        <div class="test-div">3</div>
+
+        <div class="div-element"></div>
+
+    </section>
+    <!-- evnets -->
+    <section>
+        <div class="btn-container">
+            <button class="button-wrapper btn-wrapper"></button>
+            <button class="button-wrapper btn-wrapper"></button>
+            <button class="btn-wrapper-2"></button>
+        </div>
+
+        <input type="text" id="inputfield" name="input" class="inputfield">
+        <!-- div box -->
+        <div class="box-div">
+            <h2>title</h2>
+            <p>lorem</p>
+        </div>
+
+        <a href="https://youtube.com/" target="_blank" id="newlink">Youtube Website</a>
+    </section>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+//todays plan
+//1.wach lesson 6 and lesson 5 last part //almost done 
+//2. to do list //done !!
+//somehow make burger bar in lesson5 or find the code and explain //easy asf mezareba
+//complex burger bar //done!!
+
